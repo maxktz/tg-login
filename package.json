@@ -1,0 +1,19 @@
+{
+  "name": "tg-login",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/main.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "input": "^1.0.1",
+    "telegram": "^2.26.16"
+  }
+}
