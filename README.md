@@ -21,4 +21,3 @@ TELEGRAM_SYSTEM_VERSION="yourvalue"
 ```bash
 sh run_docker.sh
 ```
-
