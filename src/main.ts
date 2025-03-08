@@ -4,6 +4,8 @@ import { StringSession } from "telegram/sessions";
 import { mapTelegramProxyString } from "./utils";
 import type { TelegramDevice } from "./types";
 import os from "os";
+import { NewMessage } from "telegram/events";
+import { sleep } from "bun";
 
 export async function loginByUser(device: TelegramDevice) {
   const sessionString = await input.text(
@@ -54,6 +56,18 @@ export async function loginByUser(device: TelegramDevice) {
 
   const savedSession = session.save();
   console.log(`Here is your session string:\n${savedSession}`);
+
+  const action: string = await input.text('Do you want to log incoming messages? (y/n): ');
+  if (action.trim().toLowerCase() === 'y') {
+    client.addEventHandler(async (event) => {
+      console.log(`\nNew message in chat ${event.message.chat?.id}: ${event.message.text.replaceAll('\n', '\\n')}`)
+    }, new NewMessage())
+
+    while(true) {
+      await sleep(60*1000)
+    }
+  }
+
   await client.disconnect();
 }
 
